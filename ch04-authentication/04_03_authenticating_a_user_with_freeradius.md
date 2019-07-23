@@ -1,5 +1,5 @@
 
-###行动时间 - 使用FreeRADIUS对用户进行身份验证
+# 行动时间 - 使用FreeRADIUS对用户进行身份验证
 
 我们继续前一章的练习，我们在用户文件中对用户进行了认证。我们现在将查看在调试模式下运行的FreeRADIUS服务器的输出，而不是查看radtest命令的反馈。
 
@@ -25,13 +25,13 @@ $> radtest alice passme 127.0.0.1 100 testing123
 
 5. FreeRADIUS的调试输出将显示Access-Request数据包如何到达以及FreeRADIUS服务器如何响应此请求。
 
-###刚刚发生了什么？
+## 刚刚发生了什么？
 
 您已向FreeRADIUS发送了一个Access-Request数据包。 您已收到Access-Accept数据包。 没什么好激动的，但是观察FreeRADIUS的调试输出是非常有趣的。 这显示了返回Access-Accept数据包所涉及的内容。
 
 >如果你想使用FreeRADIUS在调试模式下运行的终端，在保持活动状态的同时你可以使用Ctrl + Z暂停当前作业（radiusd -X），然后执行bg命令在后台运行它。 终端现在应该可供您使用。 要在前台再次运行FreeRADIUS，只需执行fg命令即可。
 
-##访问请求到达
+## 访问请求到达
 当数据包到达FreeRADIUS服务器时，由以下部分指示：
 ```
 rad_recv: Access-Request packet from host 127.0.0.1 port 48698, id=73,length=57
@@ -43,7 +43,7 @@ rad_recv: Access-Request packet from host 127.0.0.1 port 48698, id=73,length=57
 我们看到传入的请求包含四个AVP。
 虽然此处以明文形式显示AVP用户密码，但它未以明文形式传送到服务器。 FreeRADIUS使用共享密钥来加密和解密User-Password AVP的值。
 
-##授权
+## 授权
 收到请求后，授权部分负责处理请求：
 ```
 # Executing section authorize from file /etc/freeradius/sites-enabled/
@@ -78,13 +78,13 @@ Found Auth-Type = PAP
 + 每个虚拟服务器，包括默认服务器，具有各种部分。虚拟服务器可以包含嵌套在虚拟服务器定义内的以下部分：监听，客户端，授权，身份验证，授权后，预代理，后代理，预备，计费和会话。
 + 访问请求首先由授权部分处理。
 
-###授权设置Auth-Type
+## 授权设置Auth-Type
 当授权部分处理请求时，各种FreeRADIUS模块会查看Access-Request中包含的AVPs。 这些模块尝试确定用于验证用户的机制和模块。 在我们的示例中，授权部分将Auth-Type设置为PAP。
 例如，如果访问请求包含MS-CHAP属性而不是用户密码，则mschap模块将检测到此并设置Auth-Type = MS-CHAP。
-###授权生效
+## 授权生效
 授权部分可以基于对指定AVP的存在或值的决定来决定完全拒绝请求。 这将导致返回到客户端的Access-Reject数据包。 那时就没有必要进行身份验证。
 
-##认证
+## 认证
 在设置Auth-Type的值后，请求将传递给authenticate部分：
 ```
 # Executing group from file /etc/freeradius/sites-enabled/default
@@ -95,7 +95,7 @@ Found Auth-Type = PAP
 ++[pap] returns ok
 ```
 在这里，我们看到authenticate部分中的pap子部分正在处理此请求并返回ok。
-##后验证
+## 后验证
 认证后部分是在认证之后完成的。您可以使用它来执行某些操作：
 ```
 # Executing section post-auth from file /etc/freeradius/sites-enabled/
@@ -103,14 +103,14 @@ default
 +- entering group post-auth {...}
 ++[exec] returns noop
 ```
-##结束
+## 结束
 结果现在发送回客户端：
 ```
 Sending Access-Accept of id 73 to 127.0.0.1 port 48698
 Reply-Message = "Hello, alice"
 Finished request 3.
 ```
-##结论
+## 结论
 查看调试输出时请记住以下几点：
 
 + 授权，验证和后验证等主要部分以#Execution开头。
@@ -122,7 +122,7 @@ Finished request 3.
 + 返回值以++ [module_name]开头，例如
  ++[files] returns ok.
 
-###尝试看看 - 使用其他身份验证协议
+## 尝试看看 - 使用其他身份验证协议
 从FreeRADIUS 2.1.10版开始，radtest客户端程序允许您指定要使用的身份验证协议。
 
 如果您的FreeRADIUS安装比2.1.10更新，您可以使用-t选项指定chap和mschap并再次执行身份验证请求。请注意当使用其他身份验证协议时，FreeRADIUS的调试反馈现在是多么不同。

@@ -1,5 +1,5 @@
 
-#行动时间 - 哈希我们的密码
+# 行动时间 - 哈希我们的密码
 我们将在此部分中使用更安全的哈希密码AVP替换用户文件中的Cleartext-Password AVP。
 关于如何创建和呈现散列密码似乎存在一般性的混淆。 我们将帮助您澄清此问题，以便为每种格式生成工作哈希值。
 OpenLDAP常见问题解答是帮助我们处理哈希值的有价值的URL：
@@ -21,7 +21,7 @@ Crypt密码哈希起源于Unix计算。 尽管仍然广泛使用crypt，但更�
 5. 通过在FreeRADIUS调试反馈中查找以下行，确保pap现在使用crypt密码：
 `[pap] Using CRYPT password "sa85/iGj2UWlA"`
 
-##MD5密码
+## MD5密码
 MD5哈希用于检查文件的完整性。 下载Linux ISO映像时，通常还会提供该文件的MD5总和。 然后，您可以使用md5sum命令确认文件的完整性。
 
 我们还可以从密码生成MD5哈希。 我们将使用Perl以pap模块所需的正确格式生成和编码MD5哈希。 此密码哈希的创建涉及外部Perl模块，您可能必须先安装这些模块才能使用该脚本。 以下步骤将向您展示如何：
@@ -50,7 +50,7 @@ print encode_base64($ctx->digest,'')."\n";
 6. 再次对其运行身份验证请求。
 7. 通过在FreeRADIUS调试反馈中查找以下行，确保pap现在使用MD5密码：
 
-##SMD5密码
+## SMD5密码
 这是带有salt的MD5密码。 此密码哈希的创建涉及外部Perl模块，您可能必须先安装这些模块才能使用该脚本。
 1. 使用以下内容创建Perl脚本; 我们将它命名为4088_04_smd5.pl：
 ```
@@ -81,7 +81,7 @@ print encode_base64($ctx->digest . $salt ,'')."\n";
 7. 通过在FreeRADIUS调试反馈中查找以下行，确保pap现在使用SMD5密码。
 `[pap] Using SMD5 encryption.`
 
-##SHA-密码
+## SHA-密码
 SHA代表安全散列算法。 SHA1最常用于SHA系列加密哈希函数。它由国家安全局（NSA）设计并作为其政府标准出版。 SHA-1产生160位散列值。在国家安全局不久之后，SHA-0已被SHA-0撤回，并被SHA-1取代。还有SHA-2系列，它具有SHA-1的显着变化。 SHA-2包括SHA-224，SHA-256，SHA-384，SHA-512加密功能。目前正在开发一种名为SHA-3的新哈希标准。
 此密码哈希的创建涉及外部Perl模块，您可能必须先安装该模块才能使用该脚本。
 
@@ -110,7 +110,7 @@ print encode_base64($ctx->digest,'')."\n";
 7. 通过在FreeRADIUS调试反馈中查找以下行，确保pap现在使用SHA密码：
 `[pap] Using SHA encryption.`
 
-##SSHA密码
+## SSHA密码
 这是带有salt的SHA密码。 此密码哈希的创建涉及外部Perl模块，您可能必须先安装这些模块才能使用脚本。
 
 1. 使用以下内容创建Perl脚本; 我们将它命名为4088_04_ssha1.pl：
@@ -142,7 +142,7 @@ print encode_base64($ctx->digest . $salt ,'')."\n";
 7. 通过查找FreeRADIUS调试反馈中的以下行，确保pap现在使用SSHA密码：
 `[pap] Using SSHA encryption.`
 
-##NT密码或LM密码
+## NT密码或LM密码
 LM-Password AVP用于存储用户密码的LM哈希。 NT-Password AVP用于存储用户密码的NTLM哈希值。 LM哈希是Windows NT之前的Microsoft LAN Manager使用的密码哈希。 NTLM 哈希是在Windows NT中引入的。
 
 由于他们已知的flaws，现在建议不再使用它们。 flaws包含预先计算的攻击的漏洞，因为它们不使用盐。密码也是分开的。这样可以减少每个密码块的可能性，从而更容易猜测。
@@ -159,9 +159,9 @@ LM-Password AVP用于存储用户密码的LM哈希。 NT-Password AVP用于存�
 4. 再次对其运行身份验证请求。
 5. 通过在FreeRADIUS调试反馈中查找以下行，确保pap现在使用NT密码：
 `[pap] NT-Hash of passme = ced46d3b902d60f779ed78bfd90ed00a`
-##刚刚发生了什么？
+## 刚刚发生了什么？
 我们创建并测试了不同的哈希格式，用于在用户文件中存储用户密码。
-##散列格式和身份验证协议
+## 散列格式和身份验证协议
 散列密码会对可以使用此密码的可用身份验证协议施加限制。如您所见，PAP可以与所有这些一起使用。 CHAP要求密码以明文形式存储。 MS-CHAP只能使用明文或NT密码。
 
 >以下URL有一个很好的身份验证协议和密码加密查找网格：

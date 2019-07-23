@@ -1,0 +1,14 @@
+# 用户存储
+
+用户存储是保存用户详细信息的地方。理想的情况是有一个单一的用户存储，使用不同的系统来使用这个单一的源。企业对这样一个存储的需求导致了目录的产生。Novell的edirectory、Microsoft的Active Directory和OpenLDAP都是目录的例子。
+
+在WWW领域，谷歌和Facebook等流行的网络环境允许第三方通过网络服务使用他们的用户存储。 这使外部Web应用程序可以使用它们进行身份验证。
+FreeRADIUS允许我们整合外部用户存储。 这减少了管理用户和密码所涉及的管理开销。 下面的示意图显示了配置FreeRADIUS时的不同可能性：
+
+
+有两种方法可以使FreeRadius将用户存储用于身份验证：
+
++ 在FreeRadius模块的帮助下读取存储中的内容。然后，其他FreeRadius模块可以使用这些内容。例如，PAP模块使用SQL模块提供的信息进行密码验证。
++ 通过向FreeRadius模块或程序发送用户凭据来与存储交互，以对用户进行身份验证。LDAP模块使用Novell eDirectory执行此操作。mschap模块使用ntlm_auth程序与Microsoft Active Directory交互。
+
+本章的其余部分将是实际操作，以了解不同的用户存储如何融入FreeRadius。
