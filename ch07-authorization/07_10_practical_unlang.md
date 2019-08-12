@@ -1,0 +1,4 @@
+# 实用的unlang
+在上一章的第6章Accounting中，我们介绍了sql_counter模块。 此模块可用于限制用户每天，每周或每月在网络上花费的时间，但是，sql_counter在限制用户的数据使用方面存在问题。
+## 限制数据使用
+要限制用户的每日，每周或每月数据使用量，我们必须采取不同的方法。 unlang将SQL语句用作变量的能力创造了许多可能性。 我们将使用之前提到的运行WISP的Isaac的相同场景。  Isaac现在想要限制一个人在一段时间内可以使用的数据量。 他利用Mikrotk和Coova Chilli捕获门户来控制网络访问，并拥有一个FreeRADIUS RADIUS服务器。
