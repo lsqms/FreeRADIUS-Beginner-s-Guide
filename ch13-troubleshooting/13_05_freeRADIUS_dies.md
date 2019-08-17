@@ -1,0 +1,5 @@
+# FreeRADIUS宕机
+如果有一个专门的进程不断监视另一个流程，并且当它会消失的那一刻，那就简单地重新开始这个死掉的进程，那不是很好吗？ deamontools包中包含一个名为supervise的程序。 如果要最大限度地减少停机时间，以下URL将详细介绍如何使用supervise程序对radiusd进程进行检查：
+http://freeradius.org/radiusd/doc/supervise-radiusd.txt
+在您发现FreeRADIUS意外宕机后，请浏览各种系统日志文件，以尝试确定导致此情况发生的原因。
+到目前为止，我们已经讨论了可能阻止FreeRADIUS启动和执行的问题，以及如何使其保持运行。 本章的其余部分将介绍客户端与正在运行的FreeRADIUS服务器交互时的常见问题。
