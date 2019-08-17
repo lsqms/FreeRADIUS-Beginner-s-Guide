@@ -29,8 +29,13 @@ client jradius {
 5. 将目录更改为解压缩的jradius文件夹并运行以下命令：`$> sh simulator.sh`
 以下屏幕截图显示了上一个命令的输出：
 
+![the_output_from_the_previous_command](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch10/the_output_from_the_previous_command.PNG?raw=true)
+
 6. 为RADIUS服务器和共享密钥提供值。 单击Log RADIUS to Log选项卡以激活日志记录。
 7. 选择“属性”选项卡，然后添加屏幕截图中显示的属性及其值。 您可能必须更改某些值以适合您的环境。 还要确保在AccessReq列中选中它们：
+
+![ensure_they_are_all_selected_in_the_AccessReq_column](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch10/ensure_they_are_all_selected_in_the_AccessReq_column.PNG?raw=true)
+
 8. 现在可以通过单击RADIUS选项卡然后单击开始按钮开始测试。 您将能够在“日志”选项卡中看到反馈。
 9. 浏览各种身份验证协议选项并测试每个选项。
 除EAP-TLS之外的所有这些都应该通过身份验证请求。

@@ -67,7 +67,7 @@ FreeRADIUS服务器的配置逻辑上划分为不同的文件. 这些文件被�
 
 `clients.conf`文件不是唯一的文件, `client` section可以被定义, 尽管他是常用和最符合逻辑的地方. 下图显示在一个server section内嵌套定义的客户端.
 
-![freeradius-client](http://akagi201.qiniudn.com/freeradius-client.png)
+![nested_client_definitions_inside_a_server_section](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch03/nested_client_definitions_inside_a_server_section.PNG?raw=true)
 
 #### 客户端标识
 FreeRADIUS服务器通过他的IP地址标识一个客户端. 如果一个不知道的客户端发送给服务器一个请求, 这个请求将会被默默忽略.

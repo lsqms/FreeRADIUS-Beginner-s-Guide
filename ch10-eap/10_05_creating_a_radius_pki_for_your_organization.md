@@ -7,10 +7,12 @@
 ### 为什么要使用PKI？
 使用EAP-TTLS或PEAP的每个客户端都必须将新创建的CA证书添加到请求者中的可用CA列表中。如果您未能这样做，则会产生巨大的安全风险。下图应该说明一切：
 
+![client_add_newly_created_CA_certificate_to_the_list](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch10/client_add_newly_created_CA_certificate_to_the_list.PNG?raw=true)
+
 如果客户端未检查来自RADIUS服务器的证书的有效性，则任何人都可以创建恶意设置并从组织的用户那里获取一些密码。
 README文件还建议不要使用根CA创建的证书，因为这可能会允许黑客从同一根CA获取证书，并在用户认为安全的情况下在部署中使用此证书。
 现在PKI已准备好生产，tls，ttls和peap方法可以使用新创建的证书。 ttls和peap方法都要求正确配置tls方法，因为它们将其用作加密功能的基础。
-将CA添加到客户端
+## 将CA添加到客户端
 一些请求者允许我们在配置EAP-TLS，EAP-TTLS或PEAP时从操作系统的可信CA列表中进行选择。不幸的是，将新创建的CA添加到该列表中有时候是一场战斗。下表列出了一些操作系统和有关在请求方中包含新CA的注意事项：
 |Operatng system|Comment on CA in supplicant|
 |:-|:-:|

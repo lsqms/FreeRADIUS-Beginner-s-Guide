@@ -16,7 +16,7 @@ listen {
 这个监听部分使FreeRADIUS监听计费请求。有关监听部分的更多信息，请参阅radiusd.conf中的注释。
 请注意监听代码中的port = 0。当port指定为0时，FreeRADIUS将从/etc/services文件中读取端口的值。但是，您可以在启动期间通过传递-p <端口号>参数来覆盖此值，这将强制FreeRADIUS服务器仅侦听指定的端口。
 
->/etc/services文件用于将端口号和协议映射到服务名称。
+> /etc/services文件用于将端口号和协议映射到服务名称。
 > 
 ```
 radius 1812/tcp

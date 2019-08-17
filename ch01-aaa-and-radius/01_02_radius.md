@@ -24,7 +24,7 @@ RADIUS协议是一个C/S协议, 利用UDP来通信. 使用UDP而不是TCP暗示�
 
 一个NAS作为一个RADIUS客户端. 因此当你读到关于一个RADIUS客户端, 他表示一个NAS.
 
-![nas-radius](http://akagi201.qiniudn.com/nas-radius.png)
+![An_NAS_acts_as_a_RADIUS_client](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch01/An_NAS_acts_as_a_RADIUS_client.PNG?raw=true)
 
 RADIUS包有一个指定的格式, 定义在RFC里面. 在一个RADIUS包中, 两个关键的组件是:
 
@@ -43,11 +43,11 @@ RADIUS包有一个指定的格式, 定义在RFC里面. 在一个RADIUS包中, �
 
 下面的截图显示来自RADIUS客户端的Access-Request包.
 
-![radius-request](http://akagi201.qiniudn.com/radius-request.png)
+![Access-Request_packet_send_from_the_RADIUS_client](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch01/Access-Request_packet_send_from_the_RADIUS_client.PNG?raw=true)
 
 下面的截图显示RADIUS服务器返回给这个请求一个Access-Accept数据包.
 
-![radius-respond](http://akagi201.qiniudn.com/radius-respond.png)
+![RADIUS_server_responding_to_this_request_with_an_Access-Accept_packet](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch01/RADIUS_server_responding_to_this_request_with_an_Access-Accept_packet.PNG?raw=true)
 
 让我们来研究一下这些数据包.
 
@@ -161,11 +161,11 @@ Accounting包括RADIUS code 4(Accounting-Request)和code 5(Accounting-Response)�
 
 看下面的Wireshark输出, 显示一个典型的accounting 交易. 他从一个来自客户端的Accounting-Request开始.
 
-![accounting-request](http://akagi201.qiniudn.com/accounting-request.png)
+![Accountng-Request_from_the_client](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch01/Accountng-Request_from_the_client.PNG?raw=true)
 
 服务器然后回复给客户端一个Accounting-Response.
 
-![accounting-response](http://akagi201.qiniudn.com/accounting-response.png)
+![replies_to_the_client_with_an_Accountng-Response](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch01/replies_to_the_client_with_an_Accountng-Response.PNG?raw=true)
 
 Accounting-Request包也需要包含某些AVPs. 让我们看一下在accounting中使用的重要的AVPs.
 

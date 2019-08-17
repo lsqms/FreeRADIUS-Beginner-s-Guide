@@ -124,6 +124,7 @@ your-org.com RADIUS服务器现在将做两件事：
 
 以下示意图显示了如何将域(realm)，home_server_pool和home_server部分用作创建许多布置的单独构建块。
 
+![create_many_arrangements](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/create_many_arrangements.PNG?raw=true)
 
 ## home_server
 home_server部分定义了一个服务器，用于代理某些类型的请求。在我们的示例设置中，我们指定了auth + acct。本质上，它包含FreeRADIUS将用作指定家庭服务器的客户端的详细信息。它还可以包含可选指令，当home_server在home_server_pool中分组时，FreeRADIUS将使用这些指令来确定故障转移和负载平衡。一个home_server可以包含在一个或多个home_server_pool中，或者根本不包括在内。
@@ -136,6 +137,8 @@ proxy.conf文件中的注释还提到了使用authost，accthost和secret指令�
 
 ## 身份验证代理请求的流程图
 下图显示了代理到另一台服务器的请求与本地处理的请求之间的流量差异。
+
+![Flow_chart_of_an_authentication_proxy_request](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/Flow_chart_of_an_authentication_proxy_request.png?raw=true)
 
 如果我们在bob@your-org.com尝试验证时查看my-org.com RADIUS服务器上的调试输出，我们可以按照此流程进行操作。 我们来讨论一些要点。
 

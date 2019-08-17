@@ -10,7 +10,7 @@ listen {
 2. 在调试模式下重新启动FreeRADIUS。
 3. 使用以下命令在内部隧道虚拟服务器上测试身份验证：
 `radtest alice passme 127.0.0.1:18120 100 testing123`
-4.您应该通过查看调试输出中的反馈来查看内部隧道虚拟服务器：
+4. 您应该通过查看调试输出中的反馈来查看内部隧道虚拟服务器：
 ```
 server inner-tunnel {
 +- entering group authorize {...}
@@ -30,6 +30,8 @@ FreeRADIUS中提供的虚拟服务器功能允许我们通过两个不同的虚�
 ## 试一试 - 使用JRadius模拟器测试两个身份
 在本练习中，我们将使用JRadius Simulator来使用两个不同的身份，以便在内部身份和外部身份之间进行区分：
 1. JRadius Simulator在“属性”选项卡上有一列，允许您指定隧道的属性（TunnelReq）。 更新属性以显示以下内容：
+
+![Update_the_Atributes](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch10/Update_the_Atributes%20.PNG?raw=true)
 
 2. 选择RADIUS选项卡，选择EAP-TTLS / PAP作为身份验证协议。 然后单击“开始”以执行身份验证测试。
 3. 观察FreeRADIUS的调试输出，并在反馈中查看以下内容：

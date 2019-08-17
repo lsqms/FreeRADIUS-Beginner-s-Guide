@@ -158,6 +158,8 @@ LDAP具有称为LDAP数据交换格式（LDIF）的标准格式，用于添加�
 我们将使用此LDIF格式为一些用户创建以下结构：
 该图形显示了具有以下内容的树结构：
 
+![a_tree_structure](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch05/a_tree_structure.PNG?raw=true)
+
 + 树的根是名为My Domain Inc.的组织。它属于dcObject和组织对象类。
 + 到树的根是一个名为radius的组织单元，它包含三个子组织单元：用户，配置文件和管理员。组织单位就像一个文件夹;它属于organizationalunit对象类。
 + 用户组织单位包含三个用户：student1，student2和student3。这些用户属于person和radiusProfile对象类。

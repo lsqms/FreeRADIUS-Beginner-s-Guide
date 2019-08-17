@@ -24,6 +24,8 @@ if( request:Realm == NULL ){
 + LOCAL域是一个始终存在的领域，如果控制：Proxy-To-Realm被指定为LOCAL，则不会发生代理。当定义领域时，在领域定义内没有任何外部服务器或虚拟服务器时，也会使用LOCAL领域。 LOCAL领域的另一个用途是取消代理请求并在本地处理请求。
 + DEFAULT域（如果已定义）用于包含未知领域的任何请求。 DEFAULT域定义几乎总是包含nostrip选项，以帮助上游服务器在域之间进行区分。当您将请求转发到Eduroam服务器等上游服务器时，通常会使用此方法。简而言之，它匹配所有未接收的领域。有关说明，请参见下图：
 
+![default_realm](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/default_realm.PNG?raw=true)
+
 从图中我们可以看到，具有未知领域的用户通过后缀模块分组到DEFAULT域中。 从那里，请求通常在上游转发。 此原则类似于TCP / IP协议的默认网关。
 
 > 小心创建无限循环

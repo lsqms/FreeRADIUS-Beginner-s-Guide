@@ -18,7 +18,7 @@ PAP是用于在进行点对点连接时提供用户名和密码的第一个协�
 >HTTPS代表安全超文本传输协议，是一种使用安全套接字层/传输层安全（SSL/TLS）在不安全网络上创建安全通道的Web标准。 一旦建立了这个安全通道，我们就可以通过它传输敏感数据，如信用卡详细信息。 HTTPS每天用于通过Internet保护数百万个交易。
 
 请参阅以下典型强制网络门户配置的示意图。
-![](https://i.imgur.com/U9hjai5.png)
+![schematic_of_a_typical_captive_portal_configuration](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch04/schematic_of_a_typical_captive_portal_configuration.PNG?raw=true)
 
 下表显示了PAP请求中涉及的RADIUS AVPs：
 

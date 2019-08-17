@@ -53,7 +53,7 @@ $> radtest bob passbob 127.0.0.1 100 testing123
 + 如果要使用具有不同配置的相同模块，则必须为模块声明一个命名部分，其中包含备用配置。 要在一个部分中使用它，您必须引用命名部分的名称。 我们使用了exp_students和exp_professors，它们是为expiration模块创建的命名部分。
 FreeRADIUS中的此功能允许您使用sql模块连接到不同的数据库或ldap模块以使用不同的目录或文件模块来使用不同的用户文件。
 
-![my-logo.png](https://upload-images.jianshu.io/upload_images/13623636-6d878e3d3ef63825.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 "my-logo")
+![use_the_files_module_to_use_diﬀerent_users_files](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch09/use_the_files_module_to_use_di%EF%AC%80erent_users_files.PNG?raw=true)
 
 > 注意条件陈述的结构
 > 条件陈述的结构非常重要。 if，elsif和else关键字都应该在一个新行上。 如果你不这样做，你将得到意想不到的结果。

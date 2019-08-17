@@ -5,6 +5,7 @@
 在WWW领域，谷歌和Facebook等流行的网络环境允许第三方通过网络服务使用他们的用户存储。 这使外部Web应用程序可以使用它们进行身份验证。
 FreeRADIUS允许我们整合外部用户存储。 这减少了管理用户和密码所涉及的管理开销。 下面的示意图显示了配置FreeRADIUS时的不同可能性：
 
+![diﬀerent_possibilities_when_configurin_ FreeRADIUS](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch05/di%EF%AC%80erent_possibilities_when_configurin_%20FreeRADIUS.PNG?raw=true)
 
 有两种方法可以使FreeRadius将用户存储用于身份验证：
 

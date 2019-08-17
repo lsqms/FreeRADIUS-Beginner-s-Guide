@@ -1,6 +1,8 @@
 # 限制用户账户的同时使用
 Isaac是一家无线互联网服务提供商（WISP），他的收入取决于拥有尽可能多的用户，因为他每月收费。 爱丽丝是他的客户。 她给住在隔壁的鲍勃提供了她的证书（账户密码），所以他们都在同一时间连接无线网络。 Isaac需要结束这一点，否则他将不得不关闭他的WISP并编写HTML代码作为食物！
 
+![alice_gives_her_credentals_to_Bob](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch06/alice_gives_her_credentals_to_Bob%20.PNG?raw=true)
+
 # 行动时刻 - 限制用户账户的同时使用
 在sites-enabled/default文件中定义的默认虚拟服务器含有如下会话定义部分：
 ```
@@ -58,6 +60,8 @@ Received response ID 175, code 5, length = 20
 
 ## 刚刚发生了什么？
 我们刚刚设法将Isaac从编码HTML中删除。 Alice和Bob也将无法再同时使用互联网。
+
+![Alice_and_Bob_will_also_not_be_able_to_use_the_Internet_simultaneously_any_more](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch06/Alice_and_Bob_will_also_not_be_able_to_use_the_Internet_simultaneously_any_more.PNG?raw=true)
 
 我们来看一些技术方面。
 

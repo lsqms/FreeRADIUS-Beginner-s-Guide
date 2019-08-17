@@ -4,6 +4,8 @@
 ## ISP与电信公司之间的协议
 考虑下图：
 
+![Agreement_between_an_ISP_and_a_Telco](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/Agreement_between_an_ISP_and_a_Telco.PNG?raw=true)
+
 + Alice是my-isp.com的客户。 My-isp.com没有自己的基础设施。
 + 但是，my-isp.com与当地的电信公司(Telco)签订了协议。 Telco允许my-isp.com的客户使用Telco的DSL Concentrator(集中器)设备连接到Internet。
 + 本地Telco的DSL集中器将首先将认证请求转发给Telco RADIUS服务器。
@@ -22,12 +24,16 @@
 ## 两个组织之间的协议
 为了证明这一点，我们将使用两个图表。 第一个是alice@my-org.com访问your-org.com：
 
+![alice@my-org.com_visits_your-org.com](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/alice@my-org.com_visits_your-org.com.PNG?raw=true)
+
 + 这种类型的漫游用于Eduroam。 两个组织都安装了具有通用SSID的Wi-Fi接入点（在我们的例子中为org.com）。
 + 当alice@my-org.com访问your-org.com时，她只需连接到org.com SSID即可。 这个SSID在my-org.com和your-org.com上是相同的。
 + 然后，Wi-Fi AP将其身份验证请求转发给your-org.com RADIUS服务器。 此RADIUS服务器发现alice@my-org.com是my-org.com的用户，并将请求代理到my-org.com RADIUS服务器。
 + your-org.com中的RADIUS服务器成为my-org.com RADIUS服务器的另一个客户端。
 
 下图显示了当bob@your-org.com访问my-org.com时会发生什么：
+
+![bob@your-org.com_visits_my-org.com](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/bob@your-org.com_visits_my-org.com.PNG?raw=true)
 
 + bob@your-org.com已配置为连接到your-org.com的org.com SSID。 一旦他访问my-org.com，org.com SSID就准备就绪并等待他连接。
 + Wi-Fi AP将Bob的身份验证请求转发给my-org.com RADIUS服务器。 此RADIUS服务器看到bob@your-org.com是your-org.com的用户， 就会将请求代理到your-org.com RADIUS服务器。

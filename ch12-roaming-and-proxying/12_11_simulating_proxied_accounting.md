@@ -15,6 +15,7 @@
 ## 计费代理请求的流程
 下图显示了代理到另一台服务器的请求与本地处理的请求之间的流量差异：
 
+![Flow_of_an_accounting_proxy_request](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch12/Flow_of_an_accounting_proxy_request.PNG?raw=true)
 
 您会注意到默认情况下计费记录在两台服务器上。 您可以使用unlang创建if条件，以防止在转发服务器中记录计费数据。
 

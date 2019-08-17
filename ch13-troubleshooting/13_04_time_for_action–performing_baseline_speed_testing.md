@@ -2,6 +2,9 @@
 以下步骤将演示如何执行速度测试：
 1. 使用第10章EAP作为指南安装和配置JRadius Simulator。
 2. 通过增加请求线程和每线程请求的值来测试FreeRADIUS的响应时间，观察FreeRADIUS达到饱和点的值。
+
+![performing_baseline_speed_testing](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch13/performing_baseline_speed_testing.PNG?raw=true)
+
 3. 测试在FreeRADIUS服务器上完成典型事务的持续时间。 例如，如果您是Eduroam的一部分，您可以记录您支持的各种EAP方法的持续时间。 您还可以测试计费请求的速度。
 
 ## 刚刚发生了什么？

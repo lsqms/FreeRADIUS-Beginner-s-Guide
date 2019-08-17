@@ -1,14 +1,17 @@
 # 限制用户的使用
-如本章开头所述，我们可以使用会计数据进行容量规划。本章的其余部分将介绍我们根据指定用户的现有会计数据限制用户的每日使用情况的情况。
+如本章开头所述，我们可以使用记账数据进行容量规划。本章的其余部分将介绍我们根据指定用户的现有记账数据限制用户的每日使用情况的情况。
 
 ## 每天30分钟
 Isaac的WISP再次流行，当地的比萨店已经与他接洽，为他们的客户提供互联网接入。每个客户购买的每个披萨都可以免费上网30分钟。此免费互联网必须仅在一天内有效，并且应在购买比萨饼的当天22:00到期。 Isaac使用Coova Chilli和Mikrotk俘虏门户组合作为他的WISP。
+
+![Each_customer_will_get_30_minutes_free_Internet_with_every_pizza_they_purchase](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch06/Each_customer_will_get_30_minutes_free_Internet_with_every_pizza_they_purchase.PNG?raw=true)
+
 ## FreeRADIUS如何提供帮助
 在介绍RADIUS协议的过程中，我们指出RADIUS服务器不能对用户施加限制。虽然RADIUS服务器将返回AVP以指示某些限制，但NAS负责强制它们。
 
 常见的限制是数据或基于时间。 Session-Timeout返回AVP是基于时间的，并且被许多NAS设备理解。如果我们只想让用户的会话持续30分钟，只需在Access-Accept数据包中返回Session-Timeout = 1800。如果NAS支持Session-Timeout，它将在30分钟后终止用户的会话。
 
->查看NAS支持哪些AVP的最佳位置是搜索特定供应商或项目的网站。
+> 查看NAS支持哪些AVP的最佳位置是搜索特定供应商或项目的网站。
 
 除了一个问题，此方案工作正常。用户可以在超时后再次登录，再获得30分钟！
 
@@ -34,7 +37,7 @@ counter daily {
 ```
 修改计数器如下：
 
-1. 编辑FreeRADIUS配置目录中的sites-enabled/default文件。 在授权和会计部分取消daily注释。 此外，在radius.conf文件的实例化部分取消daily注释，以确保计数器的正确即时。
+1. 编辑FreeRADIUS配置目录中的sites-enabled/default文件。 在授权和记账部分取消daily注释。 此外，在radius.conf文件的实例化部分取消daily注释，以确保计数器的正确即时。
 2. Max-Daily-Session和Daily-Session-Time AVP 未列入任何dictonary。 编辑FreeRADIUS配置目录中的字典文件并添加它们：
 ```
 ATTRIBUTE My-Local-String 3000 string
@@ -131,7 +134,7 @@ counter daily {
 |reply-name|Session-Timeout|Session-Timeout = Max-Daily-ession minus Acct-Session-Time|
 |reset|daily|要考虑的时间跨度。 值可以是每日，每周，每月或从不。|
 
->简而言之，计数器模块将在指定的重置周期内计算count-attribute的总使用量; 然后它会从check-name中减去这个值。 如果小于零则返回失败; 如果它大于零，它将返回reply-name的值。
+> 简而言之，计数器模块将在指定的重置周期内计算count-attribute的总使用量; 然后它会从check-name中减去这个值。 如果小于零则返回失败; 如果它大于零，它将返回reply-name的值。
 
 您可以在计数器文件的注释中阅读有关其他指令及其用法的更多信息。
 
@@ -148,7 +151,7 @@ counter daily {
 ## 试一试 - 使用单个数据库的各种计数器
 我们现在看一下从单个数据库运行多个计数器。
 ## 使用rlm_sqlcounter
-当我们配置FreeRADIUS来限制用户的会话时，我们在会计部分包含了sql。我们假设您仍然在默认虚拟服务器的记帐部分中包含sql。
+当我们配置FreeRADIUS来限制用户的会话时，我们在记账部分包含了sql。我们假设您仍然在默认虚拟服务器的记帐部分中包含sql。
 
 在本练习中，我们构建了之前使用sql模块进行记帐的方法。我们使用MySQL作为数据库。 FreeRADIUS还支持PostgreSQL，Microsoft SQL Server和Oracle数据库，作为MySQL的替代品。这个sqlcounter模块应该与替代方案一样好用。
 
@@ -158,19 +161,13 @@ counter daily {
 2. 改变dailycounter的sql指令：
 更改前:
 ```
-query = "SELECT SUM(acctsessiontime - \
-GREATEST((%b - UNIX_TIMESTAMP(acctstarttime)), 0)) \
-FROM radacct WHERE username = '%{%k}' AND \
-UNIX_TIMESTAMP(acctstarttime) + acctsessiontime > '%b'"
+query = "SELECT SUM(acctsessiontime - GREATEST((%b - UNIX_TIMESTAMP(acctstarttime)), 0)) FROM radacct WHERE username = '%{%k}' AND UNIX_TIMESTAMP(acctstarttime) + acctsessiontime > '%b'"
 ```
 更改后:
 ```
-query = "SELECT IFNULL(SUM(acctsessiontime - \
-GREATEST((%b - UNIX_TIMESTAMP(acctstarttime)), 0)),0) \
-FROM radacct WHERE username = '%{%k}' AND \
-UNIX_TIMESTAMP(acctstarttime) + acctsessiontime > '%b'"
+query = "SELECT IFNULL(SUM(acctsessiontime - GREATEST((%b - UNIX_TIMESTAMP(acctstarttime)), 0)),0) FROM radacct WHERE username = '%{%k}' AND UNIX_TIMESTAMP(acctstarttime) + acctsessiontime > '%b'"
 ```
-3. 编辑FreeRADIUS配置目录中的sites-enabled/default文件。 通过注释将每日在授权和会计部分中删除。
+3. 编辑FreeRADIUS配置目录中的sites-enabled/default文件。 通过注释将每日在授权和记账部分中删除。
 4. 在授权部分的每日注释下方添加dailycounter。
 5. 确认sql包含在计费部分中。
 6. 清理MySQL数据库中的radacct表：

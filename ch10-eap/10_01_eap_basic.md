@@ -5,6 +5,8 @@ EAP用于在允许用户访问网络之前对用户进行身份验证。 由于E
 ## EAP组件
 下图显示了EAP框架的各个组件：
 
+![the_various_components_of_the_EAP_framework](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch10/the_various_components_of_the_EAP_framework.PNG?raw=true)
+
 EAP框架涉及三个主要组件。
 
 ### 认证
@@ -36,6 +38,9 @@ EAP框架涉及三个主要组件。
 ### EAPOL启动
 
 由于验证者通常知道潜在用户何时连接到交换机，因此通常不使用EAPOL-Start消息。 但是，请求者可以通过发送EAPOL-Start数据包让验证者了解其存在。
+
+![the_conversation_between_the_three_EAP_components](https://github.com/lsqms/FreeRADIUS/blob/master/image/ch10/the_conversation_between_the_three_EAP_components.PNG?raw=true)
+
 一旦验证者知道新客户端已连接，它将首先要求客户端通过向客户端发送EAPOL-Packet来标识自己。
 
 ### EAPOL-Packet
